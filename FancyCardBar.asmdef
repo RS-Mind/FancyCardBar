@@ -2,7 +2,8 @@
     "name": "FancyCardBar",
     "references": [
         "UnboundLib",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "ModdingUtils"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

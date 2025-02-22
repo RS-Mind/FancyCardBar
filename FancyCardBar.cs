@@ -9,13 +9,14 @@ using UnboundLib;
 namespace FancyCardBar
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin(ModId, ModName, Version)]
     [BepInProcess("Rounds.exe")]
     public class FancyCardBar : BaseUnityPlugin
     {
         private const string ModId = "com.rsmind.rounds.fancycardbar";
         private const string ModName = "Fancy Card Bar";
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
         public const string ModInitials = "FCB";
         public static FancyCardBar instance { get; private set; }
 

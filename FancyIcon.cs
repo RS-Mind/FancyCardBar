@@ -2,7 +2,7 @@
 
 namespace FancyCardBar
 {
-    internal class FancyIcon : MonoBehaviour
+    public class FancyIcon : MonoBehaviour
     {
         public GameObject fancyIcon;
     }
