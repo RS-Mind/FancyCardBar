@@ -5,6 +5,8 @@ using Jotunn.Utils;
 using UnityEngine;
 using System.Collections;
 using UnboundLib;
+using UnboundLib.Utils.UI;
+using TMPro;
 
 namespace FancyCardBar
 {
@@ -16,7 +18,8 @@ namespace FancyCardBar
     {
         private const string ModId = "com.rsmind.rounds.fancycardbar";
         private const string ModName = "Fancy Card Bar";
-        public const string Version = "1.1.3";
+        private const string CompatibilityModName = "FancyCardBar";
+        public const string Version = "1.2.0";
         public const string ModInitials = "FCB";
         public static FancyCardBar instance { get; private set; }
 
@@ -31,6 +34,32 @@ namespace FancyCardBar
         void Start()
         {
             instance = this;
+
+            Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
+        }
+
+        internal static string GetConfigKey(string name)
+        {
+            return $"{FancyCardBar.CompatibilityModName}_{name.ToLower()}";
+        }
+
+        public static bool modActive
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(GetConfigKey("modActive"), 1) == 1;
+            }
+            internal set
+            {
+                PlayerPrefs.SetInt(GetConfigKey("modActive"), value ? 1 : 0);
+            }
+        }
+
+        private static void NewGUI(GameObject menu)
+        {
+            MenuHandler.CreateText(ModName + " Options", menu, out TextMeshProUGUI _, 60);
+            MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
+            MenuHandler.CreateToggle(modActive, "Use Fancy Icons", menu, (bool val) => { modActive = val; });
         }
 
         public static bool Debug = false;

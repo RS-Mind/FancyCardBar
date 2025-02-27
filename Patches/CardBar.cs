@@ -1,20 +1,17 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
 using UnboundLib;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UI.ProceduralImage;
 using TMPro;
 using ModdingUtils.Utils;
 
-namespace FancyCardBar
+namespace FancyCardBar.Patches
 {
     [HarmonyPatch(typeof(CardBar), "AddCard")]
     class CardBarPatch
     {
         private static void Postfix(CardBar __instance)
         {
+            if (!FancyCardBar.modActive) return;
             GameObject cardButton = __instance.transform.GetChild(__instance.transform.childCount - 1).gameObject;
             if (((CardInfo)cardButton.GetComponent<CardBarButton>().GetFieldValue("card")).GetComponent<FancyIcon>() is FancyIcon icon)
             {
@@ -30,8 +27,8 @@ namespace FancyCardBar
     class CardBarUtilsPatch
     {
         private static void Postfix(int playerID)
-
         {
+            if (!FancyCardBar.modActive) return;
             CardBar __instance = CardBarUtils.instance.PlayersCardBar(playerID);
             GameObject cardButton = __instance.transform.GetChild(__instance.transform.childCount - 1).gameObject;
             if (((CardInfo)cardButton.GetComponent<CardBarButton>().GetFieldValue("card")).GetComponent<FancyIcon>() is FancyIcon icon)
@@ -49,6 +46,7 @@ namespace FancyCardBar
     {
         private static void Postfix(int playerID)
         {
+            if (!FancyCardBar.modActive) return;
             CardBar __instance = CardBarUtils.instance.PlayersCardBar(playerID);
             GameObject cardButton = __instance.transform.GetChild(__instance.transform.childCount - 1).gameObject;
             if (((CardInfo)cardButton.GetComponent<CardBarButton>().GetFieldValue("card")).GetComponent<FancyIcon>() is FancyIcon icon)
