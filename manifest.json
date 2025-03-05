@@ -1,6 +1,6 @@
 {
     "name": "FancyCardBar",
-    "version_number": "1.2.0",
+    "version_number": "1.3.0",
     "website_url": "https://github.com/RS-Mind/FancyCardBar",
     "description": "Allows mod developers to add custom icons to the card bar.",
     "dependencies": [
