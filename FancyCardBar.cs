@@ -19,7 +19,7 @@ namespace FancyCardBar
         private const string ModId = "com.rsmind.rounds.fancycardbar";
         private const string ModName = "Fancy Card Bar";
         private const string CompatibilityModName = "FancyCardBar";
-        public const string Version = "1.3.0";
+        public const string Version = "1.3.2";
         public const string ModInitials = "FCB";
         public static FancyCardBar instance { get; private set; }
 
@@ -44,35 +44,6 @@ namespace FancyCardBar
             instance = this;
             blankIcon = assets.LoadAsset<GameObject>("I_Template");
             Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
-            if(genIcons) instance.ExecuteAfterFrames(20, () => GenerateIcons());
-        }
-
-        internal static void GenerateIcons()
-        {
-            foreach (CardInfo cardInfo in CardChoice.instance.cards)
-            {
-                if (cardInfo.gameObject.GetComponent<FancyIcon>() is FancyIcon fancyIcon) continue; // Skip auto-generation if there's already an icon
-                if (cardInfo.cardArt is GameObject art)
-                {
-                    FancyIcon icon = cardInfo.gameObject.AddComponent<FancyIcon>();
-                    icon.fancyIcon = Instantiate(blankIcon);
-                    icon.fancyIcon.transform.SetParent(icon.transform);
-                    GameObject artObject = Instantiate(art, icon.fancyIcon.transform);
-                    artObject.transform.SetAsFirstSibling();
-                    artObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-
-                    var animators = artObject.GetComponents<Animator>();
-                    foreach(Animator animator in animators)
-                    {
-                        Destroy(animator);
-                    }
-                    animators = artObject.GetComponentsInChildren<Animator>();
-                    foreach (Animator animator in animators)
-                    {
-                        Destroy(animator);
-                    }
-                }
-            }
         }
 
         internal static string GetConfigKey(string name)
@@ -110,7 +81,7 @@ namespace FancyCardBar
             MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
             MenuHandler.CreateToggle(modActive, "Use Fancy Icons", menu, (bool val) => { modActive = val; });
             MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
-            MenuHandler.CreateToggle(genIcons, "Automatically Generate Card Icons (Requires Restart)", menu, (bool val) => { genIcons = val; });
+            MenuHandler.CreateToggle(genIcons, "Automatically Generate Card Icons", menu, (bool val) => { genIcons = val; });
         }
 
         public static bool Debug = false;
