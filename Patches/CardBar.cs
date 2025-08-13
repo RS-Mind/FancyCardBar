@@ -14,10 +14,13 @@ namespace FancyCardBar.Patches
             GameObject cardButton = __instance.transform.GetChild(__instance.transform.childCount - 1).gameObject;
             if (((CardInfo)cardButton.GetComponent<CardBarButton>().GetFieldValue("card")).GetComponent<FancyIcon>() is FancyIcon icon)
             {
-                var cardBarIcon = Object.Instantiate(icon.fancyIcon, cardButton.transform);
-                cardBarIcon.transform.localScale = Vector3.one * (cardButton.GetComponent<RectTransform>().sizeDelta.x / 128f);
+                if (icon.fancyIcon is GameObject fancyIcon)
+                {
+                    var cardBarIcon = Object.Instantiate(fancyIcon, cardButton.transform);
+                    cardBarIcon.transform.localScale = Vector3.one * (cardButton.GetComponent<RectTransform>().sizeDelta.x / 128f);
 
-                cardButton.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+                    cardButton.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+                }
             }
             else if (FancyCardBar.genIcons && ((GameObject)cardButton.GetComponent<CardBarButton>().GetFieldValue("card").GetFieldValue("cardArt") is GameObject cardArt))  
             {

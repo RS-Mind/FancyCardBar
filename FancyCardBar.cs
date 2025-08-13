@@ -19,7 +19,7 @@ namespace FancyCardBar
         private const string ModId = "com.rsmind.rounds.fancycardbar";
         private const string ModName = "Fancy Card Bar";
         private const string CompatibilityModName = "FancyCardBar";
-        public const string Version = "1.3.2";
+        public const string Version = "1.3.3";
         public const string ModInitials = "FCB";
         public static FancyCardBar instance { get; private set; }
 
