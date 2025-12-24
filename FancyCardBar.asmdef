@@ -1,9 +1,9 @@
 {
     "name": "FancyCardBar",
     "references": [
+        "ModdingUtils",
         "UnboundLib",
-        "Unity.TextMeshPro",
-        "ModdingUtils"
+        "Unity.TextMeshPro"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
@@ -11,10 +11,10 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "0Harmony.dll",
+        "PhotonUnityNetworking.dll",
         "BepInEx.dll",
-        "Assembly-CSharp.dll",
-        "PhotonUnityNetworking.dll"
+        "0Harmony.dll",
+        "Assembly-CSharp.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": []
